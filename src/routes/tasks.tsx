@@ -41,11 +41,11 @@ function Tasks() {
     setTitle(""); setDue("");
   };
   const move = (id: string, dir: number) =>
-    setTasks(tasks.map((t) => t.id === id ? { ...t, status: order[Math.min(2, Math.max(0, order.indexOf(t.status) + dir))] } : t));
+    setTasks(tasks.map((t) => t.id === id ? { ...t, status: order[Math.min(2, Math.max(0, order.indexOf(t.status) + dir))] ?? t.status } : t));
 
   const prioritise = async () => {
     const open = tasks.filter((t) => t.status !== "done");
-    if (!open.length) return toast.info("No open tasks to prioritise.");
+    if (!open.length) { toast.info("No open tasks to prioritise."); return; }
     setBusy(true); setAdvice("");
     try {
       const out = await streamAI({
@@ -54,7 +54,7 @@ function Tasks() {
       }, setAdvice, "tasks");
       const m = out.match(/```json\s*([\s\S]*?)```/);
       if (m) {
-        const arr = JSON.parse(m[1]) as { id: string; priority: Task["priority"] }[];
+        const arr = JSON.parse(m[1] ?? "[]") as { id: string; priority: Task["priority"] }[];
         setTasks((prev) => prev.map((t) => { const f = arr.find((a) => a.id === t.id); return f && ["High", "Medium", "Low"].includes(f.priority) ? { ...t, priority: f.priority } : t; }));
         setAdvice(out.replace(m[0], "").trim());
         toast.success("Priorities updated by AI");
