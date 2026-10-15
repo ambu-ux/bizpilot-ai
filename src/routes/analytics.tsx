@@ -41,7 +41,7 @@ function Analytics() {
     { name: "In Progress", value: tasks.filter((t) => t.status === "doing").length },
     { name: "Done", value: tasks.filter((t) => t.status === "done").length },
   ];
-  const rate = tasks.length ? Math.round((status[2].value / tasks.length) * 100) : 0;
+  const rate = tasks.length ? Math.round((status[2]!.value / tasks.length) * 100) : 0;
   return (
     <div className="mx-auto max-w-6xl">
       <PageHeader title="Analytics" sub={`Task completion rate: ${rate}%`} />

@@ -43,7 +43,7 @@ export type Task = {
   title: string;
   status: "todo" | "doing" | "done";
   priority: "High" | "Medium" | "Low";
-  due?: string;
+  due?: string | undefined;
 };
 
 export const defaultTasks: Task[] = [

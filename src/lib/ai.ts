@@ -12,7 +12,7 @@ export async function streamAI(
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(input),
-    signal,
+    signal: signal ?? null,
   });
   if (!res.ok || !res.body) {
     const msg = await res.text().catch(() => "");

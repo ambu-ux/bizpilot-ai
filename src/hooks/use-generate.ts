@@ -12,6 +12,7 @@ export function useGenerate(module: string) {
       return await streamAI({ system, prompt }, setText, module);
     } catch (e) {
       toast.error((e as Error).message);
+      return undefined;
     } finally {
       setLoading(false);
     }
