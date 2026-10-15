@@ -12,7 +12,10 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AssistantRouteImport } from './routes/assistant'
 import { Route as EmailRouteImport } from './routes/email'
+import { Route as InvoicesRouteImport } from './routes/invoices'
 import { Route as MeetingsRouteImport } from './routes/meetings'
+import { Route as QuotationsRouteImport } from './routes/quotations'
+import { Route as TasksRouteImport } from './routes/tasks'
 import { Route as ApiAiRouteImport } from './routes/api/ai'
 
 const IndexRoute = IndexRouteImport.update({
@@ -30,9 +33,24 @@ const EmailRoute = EmailRouteImport.update({
   path: '/email',
   getParentRoute: () => rootRouteImport,
 } as any)
+const InvoicesRoute = InvoicesRouteImport.update({
+  id: '/invoices',
+  path: '/invoices',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const MeetingsRoute = MeetingsRouteImport.update({
   id: '/meetings',
   path: '/meetings',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const QuotationsRoute = QuotationsRouteImport.update({
+  id: '/quotations',
+  path: '/quotations',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TasksRoute = TasksRouteImport.update({
+  id: '/tasks',
+  path: '/tasks',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ApiAiRoute = ApiAiRouteImport.update({
@@ -45,14 +63,20 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/assistant': typeof AssistantRoute
   '/email': typeof EmailRoute
+  '/invoices': typeof InvoicesRoute
   '/meetings': typeof MeetingsRoute
+  '/quotations': typeof QuotationsRoute
+  '/tasks': typeof TasksRoute
   '/api/ai': typeof ApiAiRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/assistant': typeof AssistantRoute
   '/email': typeof EmailRoute
+  '/invoices': typeof InvoicesRoute
   '/meetings': typeof MeetingsRoute
+  '/quotations': typeof QuotationsRoute
+  '/tasks': typeof TasksRoute
   '/api/ai': typeof ApiAiRoute
 }
 export interface FileRoutesById {
@@ -60,22 +84,53 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/assistant': typeof AssistantRoute
   '/email': typeof EmailRoute
+  '/invoices': typeof InvoicesRoute
   '/meetings': typeof MeetingsRoute
+  '/quotations': typeof QuotationsRoute
+  '/tasks': typeof TasksRoute
   '/api/ai': typeof ApiAiRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/assistant' | '/email' | '/meetings' | '/api/ai'
+  fullPaths:
+    | '/'
+    | '/assistant'
+    | '/email'
+    | '/invoices'
+    | '/meetings'
+    | '/quotations'
+    | '/tasks'
+    | '/api/ai'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/assistant' | '/email' | '/meetings' | '/api/ai'
-  id: '__root__' | '/' | '/assistant' | '/email' | '/meetings' | '/api/ai'
+  to:
+    | '/'
+    | '/assistant'
+    | '/email'
+    | '/invoices'
+    | '/meetings'
+    | '/quotations'
+    | '/tasks'
+    | '/api/ai'
+  id:
+    | '__root__'
+    | '/'
+    | '/assistant'
+    | '/email'
+    | '/invoices'
+    | '/meetings'
+    | '/quotations'
+    | '/tasks'
+    | '/api/ai'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AssistantRoute: typeof AssistantRoute
   EmailRoute: typeof EmailRoute
+  InvoicesRoute: typeof InvoicesRoute
   MeetingsRoute: typeof MeetingsRoute
+  QuotationsRoute: typeof QuotationsRoute
+  TasksRoute: typeof TasksRoute
   ApiAiRoute: typeof ApiAiRoute
 }
 
@@ -102,11 +157,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EmailRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/invoices': {
+      id: '/invoices'
+      path: '/invoices'
+      fullPath: '/invoices'
+      preLoaderRoute: typeof InvoicesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/meetings': {
       id: '/meetings'
       path: '/meetings'
       fullPath: '/meetings'
       preLoaderRoute: typeof MeetingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/quotations': {
+      id: '/quotations'
+      path: '/quotations'
+      fullPath: '/quotations'
+      preLoaderRoute: typeof QuotationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tasks': {
+      id: '/tasks'
+      path: '/tasks'
+      fullPath: '/tasks'
+      preLoaderRoute: typeof TasksRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/api/ai': {
@@ -123,7 +199,10 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AssistantRoute: AssistantRoute,
   EmailRoute: EmailRoute,
+  InvoicesRoute: InvoicesRoute,
   MeetingsRoute: MeetingsRoute,
+  QuotationsRoute: QuotationsRoute,
+  TasksRoute: TasksRoute,
   ApiAiRoute: ApiAiRoute,
 }
 export const routeTree = rootRouteImport
