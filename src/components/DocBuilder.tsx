@@ -62,9 +62,9 @@ export function DocBuilder({ kind }: { kind: "quote" | "invoice" }) {
         <div className="flex items-start justify-between border-b border-border pb-4">
           <div>
             <div className="font-display text-xl font-bold text-accent">{company.name}</div>
-            <div className="text-xs text-muted-foreground">Reg: {company.reg}{company.vat && ` | VAT: ${company.vat}`}</div>
+            <div className="text-xs text-muted-foreground">{[company.reg && `Reg: ${company.reg}`, company.vat && `VAT: ${company.vat}`].filter(Boolean).join(" | ")}</div>
             <div className="text-xs text-muted-foreground">{company.address}</div>
-            <div className="text-xs text-muted-foreground">{company.email} | {company.phone}</div>
+            <div className="text-xs text-muted-foreground">{[company.email, company.phone].filter(Boolean).join(" | ")}</div>
           </div>
           <div className="text-right">
             <div className="font-display text-2xl font-bold">{isInv ? "TAX INVOICE" : "QUOTATION"}</div>
@@ -100,7 +100,7 @@ export function DocBuilder({ kind }: { kind: "quote" | "invoice" }) {
               <p>{company.bank}</p>
             </>
           ) : <p>This quotation is valid for 30 days. Prices include 15% VAT where indicated.</p>}
-          <p>MD: {company.md}</p>
+          {company.md && <p>Contact: {company.md}</p>}
         </div>
       </div>
     </div>
