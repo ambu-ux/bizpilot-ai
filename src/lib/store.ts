@@ -28,12 +28,12 @@ export type Company = {
 };
 
 export const defaultCompany: Company = {
-  name: "Ambusise Amanyange Charcoal (Pty) Ltd",
-  reg: "2026/312659/07",
-  md: "Siphosethu Hlanganise",
-  address: "Qonce, Eastern Cape, South Africa",
-  email: "info@ambusise.co.za",
-  phone: "+27 00 000 0000",
+  name: "Your Business Name",
+  reg: "",
+  md: "",
+  address: "",
+  email: "",
+  phone: "",
   vat: "",
   bank: "Bank: — | Acc: — | Branch: —",
 };
@@ -47,7 +47,7 @@ export type Task = {
 };
 
 export const defaultTasks: Task[] = [
-  { id: "1", title: "Finalise Q4 charcoal supply contract", status: "todo", priority: "High", due: "2026-10-30" },
+  { id: "1", title: "Follow up on outstanding quotes", status: "todo", priority: "High", due: "2026-10-30" },
   { id: "2", title: "Prepare investor deck", status: "doing", priority: "Medium" },
   { id: "3", title: "Register for SEDA support programme", status: "done", priority: "Low" },
 ];

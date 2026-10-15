@@ -15,7 +15,7 @@ export function DocBuilder({ kind }: { kind: "quote" | "invoice" }) {
   const today = new Date().toISOString().slice(0, 10);
   const [client, setClient] = useState({ name: "", email: "", address: "" });
   const [issue, setIssue] = useState(today);
-  const [lines, setLines] = useState<Line[]>([{ desc: "Hardwood braai charcoal 10kg", qty: 50, price: 85 }]);
+  const [lines, setLines] = useState<Line[]>([{ desc: "", qty: 1, price: 0 }]);
   const g = useGenerate(kind);
   const number = `${isInv ? "INV" : "QUO"}-${String(seq + 1).padStart(4, "0")}`;
   const t = calcTotals(lines);
@@ -43,7 +43,7 @@ export function DocBuilder({ kind }: { kind: "quote" | "invoice" }) {
           <div className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">Line items</div>
           {lines.map((l, i) => (
             <div key={i} className="flex gap-2">
-              <input className={`${inputCls} flex-1`} value={l.desc} onChange={(e) => upd(i, "desc", e.target.value)} placeholder="Description" />
+              <input className={`${inputCls} flex-1`} value={l.desc} onChange={(e) => upd(i, "desc", e.target.value)} placeholder="e.g. Replace geyser valve, labour per hour" />
               <input type="number" className={`${inputCls} w-16`} value={l.qty} onChange={(e) => upd(i, "qty", e.target.value)} />
               <input type="number" className={`${inputCls} w-24`} value={l.price} onChange={(e) => upd(i, "price", e.target.value)} />
               <button onClick={() => setLines(lines.filter((_, j) => j !== i))} aria-label="Remove"><Trash2 className="h-4 w-4 text-destructive" /></button>

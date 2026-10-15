@@ -22,9 +22,9 @@ export const Route = createFileRoute("/assistant")({
 });
 
 const chips = [
-  "Draft a 90-day growth plan for a charcoal business",
+  "Draft a 90-day growth plan for a small service business",
   "How do I register for VAT with SARS?",
-  "Pricing strategy for bulk braai charcoal",
+  "How should I price my services competitively?",
   "List SA funding agencies for small manufacturers",
 ];
 
