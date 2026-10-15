@@ -8,7 +8,7 @@ export const Route = createFileRoute("/marketing")({
   head: () => ({
     meta: [
       { title: "Marketing Studio – BizPilot AI" },
-      { name: "description", content: "AI social copy and ad campaigns for Ambusise products." },
+      { name: "description", content: "AI social copy and ad campaigns for any business." },
       { property: "og:title", content: "Marketing Studio – BizPilot AI" },
       { property: "og:description", content: "AI social posts and ad campaigns." },
       { property: "og:type", content: "website" },
@@ -22,7 +22,7 @@ const platforms = ["Facebook", "Instagram", "LinkedIn", "WhatsApp", "TikTok", "G
 const types = ["Social posts", "Full ad campaign", "Product launch", "Promo / special offer"];
 
 function Marketing() {
-  const [product, setProduct] = useState("Ambusise premium hardwood braai charcoal");
+  const [product, setProduct] = useState("");
   const [audience, setAudience] = useState("");
   const [type, setType] = useState(types[0]);
   const [sel, setSel] = useState<string[]>(["Facebook", "Instagram"]);
@@ -30,16 +30,16 @@ function Marketing() {
   const g = useGenerate("marketing");
   const go = () =>
     g.run(
-      "You are a South African marketing copywriter for Ambusise Amanyange products. Produce platform-specific copy with hooks, captions, hashtags, CTAs and, for campaigns, objectives, audience targeting, budget split in ZAR, schedule and KPIs. Use Markdown headings per platform.",
-      `Product: ${product}\nAudience: ${audience || "SA households & braai lovers"}\nContent type: ${type}\nPlatforms: ${sel.join(", ")}\nNotes: ${extra || "none"}`,
+      "You are a South African marketing copywriter for small and medium businesses in any industry. Produce platform-specific copy with hooks, captions, hashtags, CTAs and, for campaigns, objectives, audience targeting, budget split in ZAR, schedule and KPIs. Use Markdown headings per platform.",
+      `Product: ${product}\nAudience: ${audience || "the most suitable local customers for this product or service"}\nContent type: ${type}\nPlatforms: ${sel.join(", ")}\nNotes: ${extra || "none"}`,
     );
   return (
     <div className="mx-auto max-w-6xl">
-      <PageHeader title="Marketing Studio" sub="AI copy & campaigns for Ambusise products." />
+      <PageHeader title="Marketing Studio" sub="AI copy & campaigns for any business." />
       <div className="grid gap-4 lg:grid-cols-2">
         <Panel className="space-y-4">
           <Field label="Product"><input className={inputCls} value={product} onChange={(e) => setProduct(e.target.value)} /></Field>
-          <Field label="Target audience"><input className={inputCls} value={audience} onChange={(e) => setAudience(e.target.value)} placeholder="e.g. Restaurants & shisanyamas in Eastern Cape" /></Field>
+          <Field label="Target audience"><input className={inputCls} value={audience} onChange={(e) => setAudience(e.target.value)} placeholder="e.g. Homeowners in East London needing plumbing repairs" /></Field>
           <Field label="Content type">
             <select className={inputCls} value={type} onChange={(e) => setType(e.target.value)}>{types.map((t) => <option key={t}>{t}</option>)}</select>
           </Field>
