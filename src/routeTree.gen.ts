@@ -10,17 +10,26 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AnalyticsRouteImport } from './routes/analytics'
 import { Route as AssistantRouteImport } from './routes/assistant'
 import { Route as EmailRouteImport } from './routes/email'
+import { Route as FundingRouteImport } from './routes/funding'
 import { Route as InvoicesRouteImport } from './routes/invoices'
+import { Route as MarketingRouteImport } from './routes/marketing'
 import { Route as MeetingsRouteImport } from './routes/meetings'
 import { Route as QuotationsRouteImport } from './routes/quotations'
+import { Route as SettingsRouteImport } from './routes/settings'
 import { Route as TasksRouteImport } from './routes/tasks'
 import { Route as ApiAiRouteImport } from './routes/api/ai'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AnalyticsRoute = AnalyticsRouteImport.update({
+  id: '/analytics',
+  path: '/analytics',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AssistantRoute = AssistantRouteImport.update({
@@ -33,9 +42,19 @@ const EmailRoute = EmailRouteImport.update({
   path: '/email',
   getParentRoute: () => rootRouteImport,
 } as any)
+const FundingRoute = FundingRouteImport.update({
+  id: '/funding',
+  path: '/funding',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const InvoicesRoute = InvoicesRouteImport.update({
   id: '/invoices',
   path: '/invoices',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MarketingRoute = MarketingRouteImport.update({
+  id: '/marketing',
+  path: '/marketing',
   getParentRoute: () => rootRouteImport,
 } as any)
 const MeetingsRoute = MeetingsRouteImport.update({
@@ -46,6 +65,11 @@ const MeetingsRoute = MeetingsRouteImport.update({
 const QuotationsRoute = QuotationsRouteImport.update({
   id: '/quotations',
   path: '/quotations',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SettingsRoute = SettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
   getParentRoute: () => rootRouteImport,
 } as any)
 const TasksRoute = TasksRouteImport.update({
@@ -61,32 +85,44 @@ const ApiAiRoute = ApiAiRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/analytics': typeof AnalyticsRoute
   '/assistant': typeof AssistantRoute
   '/email': typeof EmailRoute
+  '/funding': typeof FundingRoute
   '/invoices': typeof InvoicesRoute
+  '/marketing': typeof MarketingRoute
   '/meetings': typeof MeetingsRoute
   '/quotations': typeof QuotationsRoute
+  '/settings': typeof SettingsRoute
   '/tasks': typeof TasksRoute
   '/api/ai': typeof ApiAiRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/analytics': typeof AnalyticsRoute
   '/assistant': typeof AssistantRoute
   '/email': typeof EmailRoute
+  '/funding': typeof FundingRoute
   '/invoices': typeof InvoicesRoute
+  '/marketing': typeof MarketingRoute
   '/meetings': typeof MeetingsRoute
   '/quotations': typeof QuotationsRoute
+  '/settings': typeof SettingsRoute
   '/tasks': typeof TasksRoute
   '/api/ai': typeof ApiAiRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/analytics': typeof AnalyticsRoute
   '/assistant': typeof AssistantRoute
   '/email': typeof EmailRoute
+  '/funding': typeof FundingRoute
   '/invoices': typeof InvoicesRoute
+  '/marketing': typeof MarketingRoute
   '/meetings': typeof MeetingsRoute
   '/quotations': typeof QuotationsRoute
+  '/settings': typeof SettingsRoute
   '/tasks': typeof TasksRoute
   '/api/ai': typeof ApiAiRoute
 }
@@ -94,42 +130,58 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/analytics'
     | '/assistant'
     | '/email'
+    | '/funding'
     | '/invoices'
+    | '/marketing'
     | '/meetings'
     | '/quotations'
+    | '/settings'
     | '/tasks'
     | '/api/ai'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/analytics'
     | '/assistant'
     | '/email'
+    | '/funding'
     | '/invoices'
+    | '/marketing'
     | '/meetings'
     | '/quotations'
+    | '/settings'
     | '/tasks'
     | '/api/ai'
   id:
     | '__root__'
     | '/'
+    | '/analytics'
     | '/assistant'
     | '/email'
+    | '/funding'
     | '/invoices'
+    | '/marketing'
     | '/meetings'
     | '/quotations'
+    | '/settings'
     | '/tasks'
     | '/api/ai'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AnalyticsRoute: typeof AnalyticsRoute
   AssistantRoute: typeof AssistantRoute
   EmailRoute: typeof EmailRoute
+  FundingRoute: typeof FundingRoute
   InvoicesRoute: typeof InvoicesRoute
+  MarketingRoute: typeof MarketingRoute
   MeetingsRoute: typeof MeetingsRoute
   QuotationsRoute: typeof QuotationsRoute
+  SettingsRoute: typeof SettingsRoute
   TasksRoute: typeof TasksRoute
   ApiAiRoute: typeof ApiAiRoute
 }
@@ -141,6 +193,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/analytics': {
+      id: '/analytics'
+      path: '/analytics'
+      fullPath: '/analytics'
+      preLoaderRoute: typeof AnalyticsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/assistant': {
@@ -157,11 +216,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EmailRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/funding': {
+      id: '/funding'
+      path: '/funding'
+      fullPath: '/funding'
+      preLoaderRoute: typeof FundingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/invoices': {
       id: '/invoices'
       path: '/invoices'
       fullPath: '/invoices'
       preLoaderRoute: typeof InvoicesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/marketing': {
+      id: '/marketing'
+      path: '/marketing'
+      fullPath: '/marketing'
+      preLoaderRoute: typeof MarketingRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/meetings': {
@@ -176,6 +249,13 @@ declare module '@tanstack/react-router' {
       path: '/quotations'
       fullPath: '/quotations'
       preLoaderRoute: typeof QuotationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/settings': {
+      id: '/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof SettingsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/tasks': {
@@ -197,11 +277,15 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AnalyticsRoute: AnalyticsRoute,
   AssistantRoute: AssistantRoute,
   EmailRoute: EmailRoute,
+  FundingRoute: FundingRoute,
   InvoicesRoute: InvoicesRoute,
+  MarketingRoute: MarketingRoute,
   MeetingsRoute: MeetingsRoute,
   QuotationsRoute: QuotationsRoute,
+  SettingsRoute: SettingsRoute,
   TasksRoute: TasksRoute,
   ApiAiRoute: ApiAiRoute,
 }
